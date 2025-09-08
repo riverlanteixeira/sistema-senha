@@ -1,0 +1,35 @@
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE files
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# Backup files
+*.bak
+*.backup
+
+# Compiled files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Configuration files that may contain sensitive information
+config.php
+.env
+
+# Node.js dependencies (if any)
+node_modules/
+
+# Composer dependencies (if any)
+vendor/
