@@ -1,7 +1,6 @@
 <?php
 // Interface do operador de guichê
 include '../includes/conexao_db.php';
-include '../includes/shadcn_components.php';
 
 // Obter o ID do guichê da URL ou da sessão
 $guiche_id = $_GET['guiche'] ?? $_SESSION['guiche_id'] ?? null;
@@ -58,134 +57,7 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operador - Sistema de Senhas</title>
-    <link href="../assets/css/shadcn.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            background-color: #fafafa;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-        .header {
-            background-color: white;
-            border-bottom: 1px solid hsl(var(--border));
-            padding: 1rem 0;
-            margin-bottom: 2rem;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .card {
-            background: white;
-            border-radius: var(--radius);
-            border: 1px solid hsl(var(--border));
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .card-header {
-            padding: 1.25rem;
-            border-bottom: 1px solid hsl(var(--border));
-        }
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin: 0;
-        }
-        .card-content {
-            padding: 1.25rem;
-        }
-        .d-grid {
-            display: grid;
-            gap: 0.75rem;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: calc(var(--radius) - 2px);
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.15s ease;
-            cursor: pointer;
-            padding: 0.75rem 1rem;
-            height: 3rem;
-            text-decoration: none;
-            color: white;
-        }
-        .btn-primary {
-            background-color: hsl(var(--primary));
-        }
-        .btn-primary:hover {
-            background-color: hsl(var(--primary) / 0.9);
-        }
-        .btn-success {
-            background-color: #10b981;
-        }
-        .btn-success:hover {
-            background-color: #059669;
-        }
-        .btn-secondary {
-            background-color: hsl(var(--secondary));
-            color: hsl(var(--secondary-foreground));
-        }
-        .btn-secondary:hover {
-            background-color: hsl(var(--secondary) / 0.8);
-        }
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .table th,
-        .table td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid hsl(var(--border));
-        }
-        .table th {
-            font-weight: 600;
-            color: hsl(var(--muted-foreground));
-        }
-        .btn-sm {
-            padding: 0.25rem 0.5rem;
-            height: 2rem;
-            font-size: 0.8125rem;
-        }
-        .btn-outline-primary {
-            background-color: transparent;
-            border: 1px solid hsl(var(--primary));
-            color: hsl(var(--primary));
-        }
-        .btn-outline-primary:hover {
-            background-color: hsl(var(--primary));
-            color: hsl(var(--primary-foreground));
-        }
-        .text-center {
-            text-align: center;
-        }
-        .mb-4 {
-            margin-bottom: 1rem;
-        }
-        .mt-4 {
-            margin-top: 1rem;
-        }
-        .alert {
-            border-radius: var(--radius);
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-        .alert-warning {
-            background-color: #fef3c7;
-            color: #92400e;
-            border: 1px solid #fde68a;
-        }
-    </style>
+    <link href="../assets/css/estilo.css" rel="stylesheet">
 </head>
 <body>
     <div class="header">
@@ -207,7 +79,7 @@ $stmt->close();
                         <p><strong>Última senha chamada:</strong> <?php echo $ultima_senha; ?></p>
                     </div>
                     <div class="text-center">
-                        <?php echo shadcn_button("Mudar Guichê", "secondary", "default", "", "selecionar_guiche.php"); ?>
+                        <a href="selecionar_guiche.php" class="btn btn-secondary">Mudar Guichê</a>
                     </div>
                 </div>
             </div>
@@ -220,8 +92,8 @@ $stmt->close();
                 </div>
                 <div class="card-content">
                     <div class="d-grid">
-                        <?php echo shadcn_button("Chamar Próxima Normal", "primary", "default", "", "chamar_senha.php?tipo=normal&guiche=" . $guiche_id); ?>
-                        <?php echo shadcn_button("Chamar Próxima Preferencial", "success", "default", "", "chamar_senha.php?tipo=preferencial&guiche=" . $guiche_id); ?>
+                        <a href="chamar_senha.php?tipo=normal&guiche=<?php echo $guiche_id; ?>" class="btn btn-primary">Chamar Próxima Normal</a>
+                        <a href="chamar_senha.php?tipo=preferencial&guiche=<?php echo $guiche_id; ?>" class="btn btn-success">Chamar Próxima Preferencial</a>
                     </div>
                 </div>
             </div>
@@ -235,9 +107,9 @@ $stmt->close();
                         <?php
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
-                                $btn_variant = ($row['id'] == $guiche_id) ? 'primary' : 'outline-primary';
+                                $btn_class = ($row['id'] == $guiche_id) ? 'btn-primary' : 'btn-outline-primary';
                                 echo "<div>";
-                                echo shadcn_button($row['nome'], $btn_variant, "sm", "", "index.php?guiche=" . $row['id']);
+                                echo "<a href='index.php?guiche=" . $row['id'] . "' class='btn " . $btn_class . " btn-sm'>" . $row['nome'] . "</a>";
                                 echo "</div>";
                             }
                         }
@@ -285,5 +157,20 @@ $stmt->close();
             </div>
         </div>
     </div>
+    
+    <style>
+        .btn-outline-primary {
+            background-color: transparent;
+            border: 1px solid #007bff;
+            color: #007bff;
+        }
+        .btn-outline-primary:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        .text-center {
+            text-align: center;
+        }
+    </style>
 </body>
 </html>

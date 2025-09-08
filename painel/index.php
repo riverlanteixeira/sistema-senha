@@ -4,26 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Público - Sistema de Senhas</title>
-    <link href="../assets/css/shadcn.css" rel="stylesheet">
+    <link href="../assets/css/estilo.css" rel="stylesheet">
     <style>
-        :root {
-            --background: 0 0% 0%;
-            --foreground: 0 0% 100%;
-            --primary: 0 72% 51%;
-            --primary-foreground: 45 100% 51%;
-            --secondary: 0 0% 20%;
-            --secondary-foreground: 0 0% 90%;
-            --muted: 0 0% 15%;
-            --muted-foreground: 0 0% 60%;
-            --border: 45 100% 51%;
-            --ring: 45 100% 51%;
-            --radius: 0.5rem;
-        }
-        
         body {
-            background-color: hsl(var(--background));
-            color: hsl(var(--foreground));
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -31,13 +17,13 @@
         }
         
         .header {
-            background-color: hsl(var(--primary));
-            color: hsl(var(--primary-foreground));
+            background-color: #dc3545;
+            color: #ffc107;
             text-align: center;
             padding: 1rem 0;
             font-size: 2.5rem;
             font-weight: bold;
-            border-bottom: 5px solid hsl(var(--primary-foreground));
+            border-bottom: 5px solid #ffc107;
         }
         
         .main-content {
@@ -48,10 +34,10 @@
         }
         
         .senha-atual {
-            background-color: hsl(var(--foreground));
-            color: hsl(var(--background));
-            border: 5px solid hsl(var(--primary-foreground));
-            border-radius: var(--radius);
+            background-color: #fff;
+            color: #000;
+            border: 5px solid #ffc107;
+            border-radius: 8px;
             padding: 2rem;
             margin-bottom: 1rem;
             text-align: center;
@@ -65,7 +51,7 @@
         .senha-atual h2 {
             font-size: 3rem;
             margin: 0 0 1rem 0;
-            color: hsl(var(--primary));
+            color: #dc3545;
         }
         
         .senha-atual h3 {
@@ -75,14 +61,14 @@
         }
         
         .ultimas-senhas {
-            background-color: hsl(var(--secondary));
-            border-radius: var(--radius);
+            background-color: #333;
+            border-radius: 8px;
             padding: 1.5rem;
             flex: 1;
         }
         
         .ultimas-senhas h3 {
-            color: hsl(var(--primary-foreground));
+            color: #ffc107;
             text-align: center;
             margin: 0 0 1rem 0;
             font-size: 2rem;
@@ -96,8 +82,8 @@
         }
         
         .senha-historico {
-            background-color: hsl(var(--muted));
-            border-radius: calc(var(--radius) - 2px);
+            background-color: #555;
+            border-radius: 4px;
             padding: 1rem;
             text-align: center;
             font-size: 2.5rem;
@@ -109,32 +95,10 @@
         
         .atualizacao {
             text-align: center;
-            color: hsl(var(--muted-foreground));
+            color: #999;
             font-style: italic;
             padding: 0.5rem;
             font-size: 1rem;
-        }
-        
-        .card {
-            background: hsl(var(--secondary));
-            border-radius: var(--radius);
-            border: 1px solid hsl(var(--border));
-        }
-        
-        .card-header {
-            padding: 1rem;
-            border-bottom: 1px solid hsl(var(--border));
-        }
-        
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 0;
-            color: hsl(var(--primary-foreground));
-        }
-        
-        .card-content {
-            padding: 1rem;
         }
     </style>
 </head>
