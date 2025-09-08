@@ -17,7 +17,13 @@ $result = $conn->query($sql);
 <body>
     <div class="header">
         <div class="container">
-            <h1>Seleção de Guichê</h1>
+            <div class="header-content">
+                <img src="../logo-pcsc.png" alt="Logo PCSC" class="logo-pcsc">
+                <div>
+                    <h1 class="header-title">POLÍCIA CIVIL DE SANTA CATARINA</h1>
+                    <p class="header-subtitle">Seleção de Guichê</p>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -43,40 +49,5 @@ $result = $conn->query($sql);
             </div>
         </div>
     </div>
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fafafa;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 1rem;
-        }
-        .header {
-            background-color: white;
-            border-bottom: 1px solid #ddd;
-            padding: 1rem 0;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        .w-100 {
-            width: 100%;
-        }
-        .alert {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: 1px solid transparent;
-            border-radius: 0.25rem;
-        }
-        .alert-warning {
-            color: #856404;
-            background-color: #fff3cd;
-            border-color: #ffeaa7;
-        }
-    </style>
 </body>
 </html>

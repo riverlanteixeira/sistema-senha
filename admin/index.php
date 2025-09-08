@@ -14,7 +14,13 @@ session_start();
 <body>
     <div class="header">
         <div class="container">
-            <h1>Administração do Sistema de Senhas</h1>
+            <div class="header-content">
+                <img src="../logo-pcsc.png" alt="Logo PCSC" class="logo-pcsc">
+                <div>
+                    <h1 class="header-title">POLÍCIA CIVIL DE SANTA CATARINA</h1>
+                    <p class="header-subtitle">Sistema de Gerenciamento de Senhas de Atendimento</p>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -85,17 +91,13 @@ session_start();
                     <!-- Formulário para adicionar novo guichê -->
                     <form method="POST" action="acao_guiche.php" class="mt-4">
                         <input type="hidden" name="acao" value="adicionar">
-                        <div class="grid">
+                        <div class="grid add-guiche-form">
                             <div>
-                                <div class="form-group">
-                                    <label for="nome_guiche" class="form-label">Nome do Guichê</label>
-                                    <input type="text" class="form-control" id="nome_guiche" name="nome_guiche" required>
-                                </div>
+                                <label for="nome_guiche" class="form-label">Nome do Guichê</label>
+                                <input type="text" class="form-control" id="nome_guiche" name="nome_guiche" required>
                             </div>
-                            <div class="d-flex align-items-end">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Adicionar Guichê</button>
-                                </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Adicionar Guichê</button>
                             </div>
                         </div>
                     </form>
@@ -184,47 +186,5 @@ session_start();
             event.target.classList.add('active');
         }
     </script>
-    
-    <style>
-        .tabs {
-            display: flex;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 1rem;
-        }
-        .tab {
-            padding: 0.75rem 1.5rem;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-        }
-        .tab.active {
-            border-bottom: 2px solid #007bff;
-            color: #007bff;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .badge {
-            display: inline-block;
-            padding: 0.25em 0.4em;
-            font-size: 75%;
-            font-weight: 700;
-            line-height: 1;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: 0.25rem;
-        }
-        .badge-success {
-            color: #fff;
-            background-color: #28a745;
-        }
-        .badge-secondary {
-            color: #fff;
-            background-color: #6c757d;
-        }
-    </style>
 </body>
 </html>

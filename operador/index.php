@@ -62,7 +62,13 @@ $stmt->close();
 <body>
     <div class="header">
         <div class="container">
-            <h1>Painel do Operador</h1>
+            <div class="header-content">
+                <img src="../logo-pcsc.png" alt="Logo PCSC" class="logo-pcsc">
+                <div>
+                    <h1 class="header-title">POLÍCIA CIVIL DE SANTA CATARINA</h1>
+                    <p class="header-subtitle">Painel do Operador - Guichê <?php echo $guiche['nome']; ?></p>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -93,7 +99,7 @@ $stmt->close();
                 <div class="card-content">
                     <div class="d-grid">
                         <a href="chamar_senha.php?tipo=normal&guiche=<?php echo $guiche_id; ?>" class="btn btn-primary">Chamar Próxima Normal</a>
-                        <a href="chamar_senha.php?tipo=preferencial&guiche=<?php echo $guiche_id; ?>" class="btn btn-success">Chamar Próxima Preferencial</a>
+                        <a href="chamar_senha.php?tipo=preferencial&guiche=<?php echo $guiche_id; ?>" class="btn btn-primary">Chamar Próxima Preferencial</a>
                     </div>
                 </div>
             </div>
@@ -107,7 +113,7 @@ $stmt->close();
                         <?php
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
-                                $btn_class = ($row['id'] == $guiche_id) ? 'btn-primary' : 'btn-outline-primary';
+                                $btn_class = ($row['id'] == $guiche_id) ? 'btn-primary' : 'btn-secondary';
                                 echo "<div>";
                                 echo "<a href='index.php?guiche=" . $row['id'] . "' class='btn " . $btn_class . " btn-sm'>" . $row['nome'] . "</a>";
                                 echo "</div>";
@@ -157,20 +163,5 @@ $stmt->close();
             </div>
         </div>
     </div>
-    
-    <style>
-        .btn-outline-primary {
-            background-color: transparent;
-            border: 1px solid #007bff;
-            color: #007bff;
-        }
-        .btn-outline-primary:hover {
-            background-color: #007bff;
-            color: white;
-        }
-        .text-center {
-            text-align: center;
-        }
-    </style>
 </body>
 </html>
