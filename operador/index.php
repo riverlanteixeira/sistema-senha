@@ -72,6 +72,8 @@ $stmt->close();
         </div>
     </div>
     
+    <?php include '../includes/menu_navegacao.php'; ?>
+    
     <div class="container">
         <!-- Menu de seleção de guichê -->
         <div class="card mb-4">

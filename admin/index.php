@@ -24,6 +24,8 @@ session_start();
         </div>
     </div>
     
+    <?php include '../includes/menu_navegacao.php'; ?>
+    
     <div class="container">
         <!-- Mensagens de feedback -->
         <?php if (isset($_SESSION['mensagem'])): ?>

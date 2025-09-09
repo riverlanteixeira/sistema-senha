@@ -27,6 +27,8 @@ $result = $conn->query($sql);
         </div>
     </div>
     
+    <?php include '../includes/menu_navegacao.php'; ?>
+    
     <div class="container">
         <div class="card">
             <div class="card-header">
