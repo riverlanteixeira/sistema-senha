@@ -22,7 +22,9 @@ senha/
 ├── assets/         # Arquivos de estilo (CSS)
 ├── docs/           # Documentação do sistema (incompleto)
 ├── criar_banco.php # Script para criação do banco de dados
-├── index.php       # Página inicial (redireciona para o painel)
+├── index.php       # Página inicial (redireciona para login)
+├── login.php       # Página de autenticação
+├── logout.php      # Script de logout
 ├── prd.md          # Documento de requisitos do produto
 └── README.md       # Documentação principal
 ```
@@ -63,6 +65,13 @@ Arquivos principais:
 - `index.php`: Interface do painel público
 - `dados.php`: Endpoint que fornece dados em tempo real via AJAX
 
+### 4. Autenticação
+Sistema de autenticação para acesso às áreas restritas:
+- Página de login
+- Verificação de credenciais
+- Controle de acesso unificado (todos os usuários autenticados podem acessar todas as áreas)
+- Sistema de logout
+
 ## Banco de Dados
 
 O sistema utiliza o banco de dados MySQL `senhas_atendimento` com as seguintes tabelas:
@@ -87,6 +96,15 @@ O sistema utiliza o banco de dados MySQL `senhas_atendimento` com as seguintes t
    - `guiche_id`: ID do guichê que chamou a senha
    - `data_hora`: Data e hora da chamada
 
+4. **usuarios**
+   - `id`: Identificador único do usuário
+   - `nome`: Nome completo do usuário
+   - `login`: Nome de usuário para login
+   - `senha`: Senha do usuário (armazenada como texto simples por simplicidade)
+   - `nivel`: Nível de acesso ('admin' ou 'operador')
+   - `ativo`: Status do usuário (1 = ativo, 0 = inativo)
+   - `data_criacao`: Data e hora de criação do usuário
+
 ## Arquivos de Configuração e Funções
 
 ### includes/conexao_db.php
@@ -102,10 +120,16 @@ Funções auxiliares do sistema:
 - `registrarChamadaSenha()`: Registra a chamada de uma senha
 - `obterUltimasSenhasChamadas()`: Obtém o histórico de senhas chamadas
 
+### includes/autenticacao.php
+Funções para controle de autenticação:
+- `verificarAutenticacao()`: Verifica se o usuário está logado
+- `obterNomeUsuario()`: Retorna o nome do usuário logado
+
 ### includes/menu_navegacao.php
 Arquivo reutilizável com menu de navegação:
 - Menu com botões para acesso rápido às principais áreas do sistema
 - Botões: Administração, Operadores e Painel
+- Informações do usuário logado e botão de sair
 - Indicador visual para página atual ativa
 - Estilizado com CSS para manter consistência visual
 
@@ -115,14 +139,15 @@ Arquivo reutilizável com menu de navegação:
 2. Colocar os arquivos do sistema na pasta `www` do WAMP
 3. Iniciar o WAMP Server
 4. Acessar `http://localhost/senha/criar_banco.php` para criar o banco de dados
-5. Acessar `http://localhost/senha/admin/` para configurar o sistema
+5. Acessar `http://localhost/senha/login.php` para fazer login no sistema
 
 ## Comandos Importantes
 
 - **Criar banco de dados**: Acessar `http://localhost/senha/criar_banco.php`
-- **Acessar administração**: `http://localhost/senha/admin/`
-- **Acessar painel público**: `http://localhost/senha/painel/`
-- **Acessar interface do operador**: `http://localhost/senha/operador/`
+- **Acessar página de login**: `http://localhost/senha/login.php`
+- **Acessar administração**: `http://localhost/senha/admin/` (requer autenticação)
+- **Acessar painel público**: `http://localhost/senha/painel/` (acesso livre)
+- **Acessar interface do operador**: `http://localhost/senha/operador/` (requer autenticação)
 
 ## Convenções de Desenvolvimento
 
@@ -134,13 +159,17 @@ Arquivo reutilizável com menu de navegação:
 
 ## Fluxo de Uso
 
-1. **Configuração inicial**:
-   - Administrador cadastra os guichês
+1. **Acesso inicial**:
+   - Usuário acessa o sistema e faz login
+   - Sistema permite acesso a todas as áreas para qualquer usuário autenticado
+
+2. **Configuração inicial**:
+   - Cadastra os guichês
    - Define as faixas de senhas (normal e preferencial)
 
-2. **Atendimento**:
-   - Cliente retira senha pré-impressa
-   - Operador chama próxima senha através da interface
+3. **Atendimento**:
+   - Seleciona o guichê que irá operar
+   - Chama próxima senha através da interface
    - Painel público é atualizado automaticamente
    - Cliente se dirige ao guichê indicado
 
@@ -157,3 +186,5 @@ Arquivo reutilizável com menu de navegação:
 - Suporta múltiplos operadores simultaneamente
 - Interface responsiva para diferentes tamanhos de tela
 - Atualizações em tempo real via AJAX
+- Sistema de autenticação baseado em sessões PHP
+- Controle de acesso unificado (todos os usuários autenticados podem acessar todas as áreas)

@@ -1,7 +1,10 @@
 <?php
 // Página de administração - Listagem de guichês
+include '../includes/autenticacao.php';
 include '../includes/conexao_db.php';
-session_start();
+
+// Verificar se o usuário está autenticado (qualquer usuário autenticado pode acessar)
+verificarAutenticacao();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

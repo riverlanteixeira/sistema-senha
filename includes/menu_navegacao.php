@@ -3,5 +3,11 @@
         <a href="/senha/admin/" class="nav-button <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/') !== false) ? 'active' : ''; ?>">Administração</a>
         <a href="/senha/operador/" class="nav-button <?php echo (strpos($_SERVER['REQUEST_URI'], '/operador/') !== false) ? 'active' : ''; ?>">Operadores</a>
         <a href="/senha/painel/" class="nav-button <?php echo (strpos($_SERVER['REQUEST_URI'], '/painel/') !== false) ? 'active' : ''; ?>">Painel</a>
+        <?php if (isset($_SESSION['usuario_id'])): ?>
+            <div class="nav-user-info">
+                <span class="nav-user-name"><?php echo $_SESSION['usuario_nome'] ?? 'Usuário'; ?></span>
+                <a href="/senha/logout.php" class="nav-button">Sair</a>
+            </div>
+        <?php endif; ?>
     </div>
 </div>

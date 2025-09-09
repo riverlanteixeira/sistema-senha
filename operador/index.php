@@ -1,6 +1,10 @@
 <?php
 // Interface do operador de guichê
+include '../includes/autenticacao.php';
 include '../includes/conexao_db.php';
+
+// Verificar se o usuário está autenticado (qualquer usuário autenticado pode acessar)
+verificarAutenticacao();
 
 // Obter o ID do guichê da URL ou da sessão
 $guiche_id = $_GET['guiche'] ?? $_SESSION['guiche_id'] ?? null;
@@ -12,7 +16,6 @@ if (!$guiche_id) {
 }
 
 // Salvar o guichê na sessão
-session_start();
 $_SESSION['guiche_id'] = $guiche_id;
 
 // Obter informações do guichê selecionado

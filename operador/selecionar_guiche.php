@@ -1,6 +1,10 @@
 <?php
 // Página de seleção de guichê para o operador
+include '../includes/autenticacao.php';
 include '../includes/conexao_db.php';
+
+// Verificar se o usuário está autenticado (qualquer usuário autenticado pode acessar)
+verificarAutenticacao();
 
 // Obter todos os guichês ativos
 $sql = "SELECT * FROM guiches WHERE status = 1 ORDER BY id";
